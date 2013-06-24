@@ -138,17 +138,79 @@ textarea {
  * Advanced Select component
  * ******************/
 .adv-select-wrapper {
+	border: 1px solid #ccc;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	height: 1.6em;
 	display: inline-block;
 	position: relative;
+	overflow: hidden;
 }
 
-.adv-select {
-	width: 300px;
+	.adv-select-wrapper .adv-select {
+		clip: rect(0,0,0,0);
+		position: absolute;
+		visibility: hidden;
+		z-index: -1;
+	}
+
+	.adv-select-wrapper .value-box {
+		position: relative;
+		padding: 0.2em;
+		background: #eee;
+	}
+
+		.adv-select-wrapper .value-box .value {
+			display: block;
+			width: 100%;
+			margin-right: 25px;
+
+		}
+
+		.adv-select-wrapper .value-box:after {
+			content: '^';
+			position: absolute;
+			display: inline-block;
+			right: 0;
+			top: 0;
+			width: 25px;
+			height: 100%;
+			border-left: 1px solid #ccc;
+			background: #ddd;
+		}
+
+		.adv-select-wrapper .search-box {
+			margin: 0.4em;
+		}
+
+		.adv-select-wrapper .search-input {
+			border: none;
+		}
+
+		.adv-select-wrapper .search-input:focus {
+
+		}
+
+		.adv-select-wrapper .select-list-outer {
+			width: 100%;
+			height: 5.6em;
+			overflow: auto;
+		}
+
+		.adv-select-wrapper .select-list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+.adv-select-wrapper.opened {
+	height: auto;
 }
 
-
-
-
+	.opened .value-box:after {
+		content: '!';
+	}
 
 
 
