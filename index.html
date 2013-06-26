@@ -32,7 +32,7 @@
 			</ul>
 			<p>Demo:</p>
 			<div class="col one-half">
-				<select id="movie-title-select" class='adv-select'>
+				<select id="movie-title-select" class='custom-select'>
 					<option value="Test 1">Test 1</option>
 					<option value="Test 2">Test 2</option>
 					<option value="Test 3">Test 3</option>
@@ -47,18 +47,19 @@
 
 		</div>
 
-		<div class="test">
+		<div class="test hidden">
 			<div class="adv-select-wrapper opened">
-				<select id="movie-title-select" class='adv-select'>
+				<select id="movie-title-select" class="adv-select">
 					<option value="man-of-steel" selected>Man of Steel</option>
 				</select>
 				<div class="value-box">
 					<span class="value">
-						Man of Steel
+
 					</span>
 				</div>
 				<div class="search-box">
 					<input type="search" class="search-input">
+					<div class="prompt">Please enter at least characters.</div>
 				</div>
 				<div class="select-list-outer">
 					<ul class="select-list">
@@ -69,13 +70,13 @@
 						<li class="item">Test</li>
 					</ul>
 				</div>
-
 			</div>
 		</div>
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 		<script src="js/plugins.js"></script>
+		<script src="js/app/AdvancedSelect.js"></script>
 		<script src="js/main.js"></script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID.
