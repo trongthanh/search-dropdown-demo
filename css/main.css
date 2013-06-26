@@ -177,6 +177,7 @@ textarea {
 			height: 100%;
 			position: absolute;
 			right: 0;
+			text-align: center;
 			top: 0;
 			width: 25px;
 		}
@@ -232,8 +233,12 @@ textarea {
 /**
  * App-specific styles
  */
-.custom-select {
-	width: 100%;
+.main .adv-select-wrapper {
+	width: 90%;
+}
+
+.main .adv-select-wrapper .select-list-outer {
+	height: 20em;
 }
 
 

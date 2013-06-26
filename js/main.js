@@ -1,4 +1,4 @@
-//name space:
+//namespace:
 var app = app || {};
 
 
@@ -10,7 +10,7 @@ jQuery(function() {
 	var AdvancedSelect = app.AdvancedSelect;
 
 	$('#movie-title-select').on('change', function() {
-		$('#output').append('New value selected: ' + this.value + ' - ' + this.selectedOptions[0].text + '<br>');
+		$('#output').append('New value selected: ' + this.value + ' - ' + $(this).find('option:selected').text() + '<br>');
 	});
 
 	var advSelectInstance = new AdvancedSelect($('#movie-title-select'));
