@@ -141,7 +141,7 @@ textarea {
 	border: 1px solid #ccc;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	border-radius: 5px;
+	border-radius: 5px 5px 5px 5px;
 	height: 1.6em;
 	display: inline-block;
 	position: relative;
@@ -156,23 +156,35 @@ textarea {
 	}
 
 	.adv-select-wrapper .value-box {
-		background: #eee;
-		cursor: pointer;
+		color: black;
+		display: block;
 		padding: 0.2em;
 		position: relative;
+		text-decoration: none;
+
+		/*shamelessly copied from select2 CSS, which is atually based on Bootstrap*/
+		background-color: #eee;
+		background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(0.5, white));
+		background-image: -webkit-linear-gradient(center bottom, #eeeeee 0%, white 50%);
+		background-image: -moz-linear-gradient(center bottom, #eeeeee 0%, white 50%);
+		background-image: -o-linear-gradient(bottom, #eeeeee 0%, #ffffff 50%);
+		background-image: -ms-linear-gradient(top, #ffffff 0%, #eeeeee 50%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);
+		background-image: linear-gradient(top, #ffffff 0%, #eeeeee 50%);
 	}
 
 		.adv-select-wrapper .value-box .value {
 			display: block;
 			height: 1.4em;
-			margin-right: 25px;
 			width: 100%;
 		}
 
-		.adv-select-wrapper .value-box:after {
-			background: #ddd;
+		.adv-select-wrapper .value-box .placeholder {
+			color: #aaa;
+		}
+
+		.adv-select-wrapper .value-box .btn  {
 			border-left: 1px solid #ccc;
-			content: '+';
 			display: inline-block;
 			height: 100%;
 			position: absolute;
@@ -180,6 +192,33 @@ textarea {
 			text-align: center;
 			top: 0;
 			width: 25px;
+
+			/*shamelessly copied from select2 CSS, which is atually based on Bootstrap*/
+			background-clip: padding-box;
+			background: #ccc;
+			background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ccc), color-stop(0.6, #eee));
+			background-image: -webkit-linear-gradient(center bottom, #ccc 0%, #eee 60%);
+			background-image: -moz-linear-gradient(center bottom, #ccc 0%, #eee 60%);
+			background-image: -o-linear-gradient(bottom, #ccc 0%, #eee 60%);
+			background-image: -ms-linear-gradient(top, #cccccc 0%, #eeeeee 60%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#eeeeee', endColorstr = '#cccccc', GradientType = 0);
+			background-image: linear-gradient(top, #cccccc 0%, #eeeeee 60%);
+		}
+			.adv-select-wrapper .value-box .btn b {
+				background: url(../img/select2.png) 5px 0 no-repeat;
+				display: block;
+				height: 100%;
+				width: 100%;
+			}
+
+		.adv-select-wrapper .search-box-outer {
+			background: #fcfcfc;
+			border: 1px solid #ccc;
+			border-top: none;
+			margin: -3px -1px -1px -1px;
+			position: absolute;
+			width: 100%;
+			z-index: 1;
 		}
 
 		.adv-select-wrapper .search-box {
@@ -204,7 +243,8 @@ textarea {
 		}
 
 		.adv-select-wrapper .select-list-outer {
-			height: 5.6em;
+			max-height: 20em;
+			margin: 2px 0;
 			overflow: auto;
 			width: 100%;
 		}
@@ -215,19 +255,39 @@ textarea {
 			padding: 0;
 		}
 
-			.adv-select-wrapper .select-list .item:hover {
+			.adv-select-wrapper .select-list .item:hover,
+			.adv-select-wrapper .select-list .selected {
 				background: #3399ff;
 				color: white;
 			}
 
-.adv-select-wrapper.opened {
-	height: auto;
-}
+			.adv-select-wrapper .scroll-bottom {
+				background: #f0f0f0;
+				display: none;
+			}
 
-	.opened .value-box:after {
-		content: '-';
+.adv-select-wrapper.opened {
+	overflow: visible;
+	border-radius: 5px 5px 0 0;
+}
+	.opened .value-box {
+		background-color: #eee;
+		background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, white), color-stop(0.5, #eeeeee));
+		background-image: -webkit-linear-gradient(center bottom, white 0%, #eeeeee 50%);
+		background-image: -moz-linear-gradient(center bottom, white 0%, #eeeeee 50%);
+		background-image: -o-linear-gradient(bottom, white 0%, #eeeeee 50%);
+		background-image: -ms-linear-gradient(top, #ffffff 0%,#eeeeee 50%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff',GradientType=0 );
+		background-image: linear-gradient(top, #ffffff 0%,#eeeeee 50%);
 	}
 
+	.opened .value-box .btn {
+		background: transparent;
+		border-left: none;
+	}
+		.opened .value-box .btn b {
+			background-position: -13px 0;
+		}
 
 
 /**
@@ -237,10 +297,19 @@ textarea {
 	width: 90%;
 }
 
-.main .adv-select-wrapper .select-list-outer {
-	height: 20em;
+/*avoid flash of unstyled select box*/
+.main .custom-select {
+	visibility: hidden;
+	opacity: 0;
 }
 
+.movie-item {
+	height: 87px;
+}
+
+	.movie-item img {
+		max-height: 87px;
+	}
 
 
 
@@ -253,6 +322,27 @@ textarea {
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+
+
+/* =================================
+	$Media Object
+	HTML:
+	<div class="media attribution">
+		<a href="http://twitter.com/stubbornella" class="img">
+			<img src="http://stubbornella.com/profile_image.jpg" alt="me" />
+		</a>
+		<div class="bd">
+			@Stubbornella 14 minutes ago
+		</div>
+	</div>
+	Reference: http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+   ================================= */
+.media { margin: 0.714em; /*10px*/ }
+	.media, .bd {overflow:hidden; _overflow:visible; zoom:1;}
+	.media .img {float:left; margin-right: 0.714em; /*10px*/}
+	.media .img img{display:block;}
+	.media .imgExt{float:right; margin-left: 0.714em; /*10px*/}
+
 
 /*
  * Image replacement
